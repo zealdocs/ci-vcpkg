@@ -1,0 +1,39 @@
+From 2c8f0d34a65537096ce0c107004c2069a7d64a20 Mon Sep 17 00:00:00 2001
+From: Oleg Shparber <oleg@zealdocs.org>
+Date: Thu, 7 Dec 2017 02:25:04 +0200
+Subject: [PATCH] libarchive: Disable unused dependencies
+
+---
+ ports/libarchive/CONTROL        | 2 +-
+ ports/libarchive/portfile.cmake | 5 +++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/ports/libarchive/CONTROL b/ports/libarchive/CONTROL
+index c1769380..ad99790d 100644
+--- a/ports/libarchive/CONTROL
++++ b/ports/libarchive/CONTROL
+@@ -1,4 +1,4 @@
+ Source: libarchive
+ Version: 3.3.2-1
+ Description: Library for reading and writing streaming archives
+-Build-Depends: zlib, bzip2, libxml2, lz4, liblzma, openssl
++Build-Depends: zlib
+diff --git a/ports/libarchive/portfile.cmake b/ports/libarchive/portfile.cmake
+index a5bed414..f13f2962 100644
+--- a/ports/libarchive/portfile.cmake
++++ b/ports/libarchive/portfile.cmake
+@@ -21,6 +21,11 @@ vcpkg_configure_cmake(
+     SOURCE_PATH ${SOURCE_PATH}
+     PREFER_NINJA
+     OPTIONS
++        -DENABLE_BZip2=OFF
++        -DENABLE_LIBXML2=OFF
++        -DENABLE_LZMA=OFF
++        -DENABLE_OPENSSL=OFF
++        -DENABLE_PCREPOSIX=OFF
+         -DENABLE_LZO=OFF
+         -DENABLE_NETTLE=OFF
+         -DENABLE_EXPAT=OFF
+--
+2.15.1.windows.2
+
