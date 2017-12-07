@@ -1,0 +1,22 @@
+image: Visual Studio 2015
+platform:
+  - x86
+  - x64
+init:
+  - ps: Update-AppveyorBuild -Version "$(Get-Date -format yyyyMMdd).${Env:APPVEYOR_BUILD_NUMBER}"
+install:
+  - git submodule update --init --recursive
+build_script:
+  - ps: .\make.ps1 -platform ${Env:PLATFORM} -version ${Env:APPVEYOR_BUILD_VERSION}
+artifacts:
+  - path: vcpkg\vcpkg-export-*.7z
+deploy:
+  - provider: BinTray
+    username: trollixx
+    api_key:
+      secure: AsKi8j1sR34g/9+B22/dJ49X3Uie8TizgQD7lzNvW2/+deWq7oLyCQQUCrqPjOUY
+    subject: zealdocs
+    repo: windows-ci
+    package: vcpkg
+    publish: true
+    override: true
