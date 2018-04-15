@@ -10,7 +10,7 @@ param(
 # Patch vcpkg
 $patches = Get-ChildItem .\patches\*.patch
 foreach ($patch in $patches) {
-    git apply $patch --directory vcpkg
+    git apply $patch --directory vcpkg --whitespace=fix
 }
 
 # Bootstrap vcpkg
