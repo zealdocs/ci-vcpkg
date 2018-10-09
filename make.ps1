@@ -19,7 +19,7 @@ Set-Location -Path vcpkg
 
 # Install Zeal dependencies
 $triplet = "$platform-windows"
-$dependencies = @("libarchive:$triplet", "openssl:$triplet", "sqlite3:$triplet")
+$dependencies = @("libarchive[core]:$triplet", "openssl:$triplet", "sqlite3:$triplet")
 .\vcpkg install $dependencies
 
 # Export vcpkg toolchain
