@@ -26,7 +26,7 @@ $dependencies = @("libarchive[core]:$triplet", "openssl:$triplet", "sqlite3:$tri
 .\vcpkg export --raw $dependencies
 Get-ChildItem "vcpkg-export-*" | Rename-Item -NewName "vcpkg-export"
 .\vcpkg list > .\vcpkg-export\package-list.txt
-7z a "vcpkg-export-$version-$platform.7z" ".\vcpkg-export\*"
+7z a -mx=9 "vcpkg-export-$version-$platform.7z" ".\vcpkg-export\*"
 
 # Done here
 Set-Location -Path ..
